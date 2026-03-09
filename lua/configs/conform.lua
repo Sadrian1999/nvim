@@ -4,6 +4,12 @@ local options = {
         c = { "clang-format" },
         cpp = { "clang-format" },
         python = { "isort", "black" },
+        html = { "prettier" },
+        ["htmlangular"] = { "prettier" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        json = { "prettier" },
+        css = { "prettier" },
     },
 
     formatters = {
@@ -22,11 +28,16 @@ local options = {
         -- Lua
         stylua = {
             prepend_args = {
-                "--column-width", "80",
-                "--line-endings", "Unix",
-                "--indent-type", "Spaces",
-                "--indent-width", "4",
-                "--quote-style", "AutoPreferDouble",
+                "--column-width",
+                "100",
+                "--line-endings",
+                "Unix",
+                "--indent-type",
+                "Spaces",
+                "--indent-width",
+                "4",
+                "--quote-style",
+                "AutoPreferDouble",
             },
         },
         -- Python
@@ -34,7 +45,7 @@ local options = {
             prepend_args = {
                 "--fast",
                 "--line-length",
-                "80",
+                "100",
             },
         },
         isort = {
@@ -43,11 +54,17 @@ local options = {
                 "black",
             },
         },
+        prettier = {
+            prepend_args = {
+                "--tab-width",
+                "4",
+            },
+        },
     },
 
     format_on_save = {
         -- These options will be passed to conform.format()
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_fallback = true,
     },
 }

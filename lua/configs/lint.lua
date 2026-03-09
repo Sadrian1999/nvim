@@ -5,6 +5,10 @@ lint.linters_by_ft = {
     -- haskell = { "hlint" },
     python = { "flake8" },
 }
+lint.linters.flake8.args = {
+    "--max-line-length=100",
+    "--extend-ignore=E203,W503",
+}
 
 lint.linters.luacheck.args = {
     "--globals",

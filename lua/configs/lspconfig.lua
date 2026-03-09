@@ -1,51 +1,30 @@
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local nvlsp = require("nvchad.configs.lspconfig")
+local on_attach, on_init, capabilities = nvlsp.on_attach, nvlsp.on_init, nvlsp.capabilities
 
-local lspconfig = require("lspconfig")
+local function setup(server, opts)
+    opts = opts or {}
+    opts.on_attach = opts.on_attach or on_attach
+    opts.on_init = opts.on_init or on_init
+    opts.capabilities = opts.capabilities or capabilities
 
--- list of all servers configured.
-lspconfig.servers = {
-    "lua_ls",
-    "clangd",
-    "pyright",
-}
-
--- list of servers configured with default config.
-local default_servers = {
-    "pyright",
-}
-
--- lsps with default config
-for _, lsp in ipairs(default_servers) do
-    lspconfig[lsp].setup({
-        on_attach = on_attach,
-        on_init = on_init,
-        capabilities = capabilities,
-    })
+    vim.lsp.config(server, opts)
+    vim.lsp.enable(server)
 end
 
-lspconfig.clangd.setup({
+setup("pyright")
+
+setup("clangd", {
     on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
         on_attach(client, bufnr)
     end,
-    on_init = on_init,
-    capabilities = capabilities,
 })
 
-lspconfig.lua_ls.setup({
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-
+setup("lua_ls", {
     settings = {
         Lua = {
-            diagnostics = {
-                enable = false, -- Disable all diagnostics from lua_ls
-                -- globals = { "vim" },
-            },
+            diagnostics = { enable = false },
             workspace = {
                 library = {
                     vim.fn.expand("$VIMRUNTIME/lua"),

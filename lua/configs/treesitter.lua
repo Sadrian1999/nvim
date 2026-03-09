@@ -29,7 +29,7 @@ local options = {
         use_languagetree = true,
     },
 
-    indent = { enable = true },
+    indent = { enable = true, disable = { "python", "typescript", "html" } },
 }
 
 require("nvim-treesitter.configs").setup(options)
