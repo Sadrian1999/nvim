@@ -103,11 +103,11 @@ return {
         },
         init = function()
             local homedir = os.getenv("HOME")
-            local student = homedir .. "/Dev/pdf/backend/app/data/app.db"
+            local mock = homedir .. "/Dev/teacher-backend/data/dev.db"
 
             vim.g.dbs = {
                 -- alias = "<dialect>:///<absolute-path>"
-                student = "sqlite3:///" .. student,
+                dev = "sqlite3:///" .. mock,
             }
             vim.g.db_ui_use_nerd_fonts = 1
         end,
