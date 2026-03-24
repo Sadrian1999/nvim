@@ -37,3 +37,5 @@ require("autocmds")
 vim.schedule(function()
     require("mappings")
 end)
+vim.g.python3_host_prog = "/Users/adriansvanyova/.pyenv/versions/3.11.13/bin/python"
+vim.env.PATH = "/Library/TeX/texbin:/opt/homebrew/bin:" .. vim.env.PATH

@@ -5,31 +5,32 @@ local options = {
         "cmake",
         "cpp",
         "fish",
-        -- "go",
-        -- "gomod",
-        -- "gosum",
-        -- "gotmpl",
-        -- "gowork",
-        -- "haskell",
         "lua",
         "luadoc",
-        -- "make",
         "markdown",
-        -- "odin",
         "printf",
         "python",
         "toml",
         "vim",
         "vimdoc",
         "yaml",
+
+        "javascript",
+        "typescript",
+        "html",
+        "css",
+        "scss",
+        "angular",
     },
 
     highlight = {
         enable = true,
-        use_languagetree = true,
     },
 
-    indent = { enable = true, disable = { "python", "typescript", "html" } },
+    indent = {
+        enable = true,
+        disable = { "python", "html" },
+    },
 }
 
 require("nvim-treesitter.configs").setup(options)

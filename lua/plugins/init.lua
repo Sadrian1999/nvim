@@ -11,11 +11,6 @@ return {
         end,
     },
     {
-        "dccsillag/magma-nvim",
-        build = ":UpdateRemotePlugins",
-        lazy = false,
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPre", "BufNewFile" },
         config = function()
@@ -131,22 +126,16 @@ return {
         },
     },
     {
-        "akinsho/flutter-tools.nvim",
-        ft = { "dart" },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "mfussenegger/nvim-dap",
-            "rcarriga/nvim-dap-ui",
-        },
-        config = function()
-            require("flutter-tools").setup({
-                lsp = {
-                    color = { enabled = true },
-                },
-                debugger = { enabled = true, run_via_dap = true },
-                widget_guides = { enabled = true },
-                closing_tags = { highlight = "Comment" },
-            })
+        "3rd/image.nvim",
+        opts = {},
+    },
+    {
+        "benlubas/molten-nvim",
+        version = "^1.0.0",
+        build = ":UpdateRemotePlugins",
+        init = function()
+            vim.g.python3_host_prog = vim.fn.expand("~/.venvs/molten/bin/python")
+            vim.g.molten_image_provider = "image.nvim"
         end,
     },
 }

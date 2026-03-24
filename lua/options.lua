@@ -6,6 +6,7 @@ vim.g.python3_host_prog = vim.fn.expand("~/anaconda3/envs/uni/bin/python")
 o.shiftwidth = 4
 o.tabstop = 4
 o.softtabstop = 4
+o.relativenumber = true
 
 vim.g.magma_automatically_open_output = false
 vim.g.magma_open_output = 0
